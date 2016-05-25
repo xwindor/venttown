@@ -7,14 +7,14 @@
 *[sample code and project 2 (steps 7-9](http://www.instructables.com/id/Raspberry-Pi-Irrigation-Controller/step7/Software/)
 *[Sample code and project 3](https://spin.atomicobject.com/2014/06/28/raspberry-pi-gardening/)
 
-2￼ Water flow sensor 
+2. Water flow sensor 
 *send signal to nano indicating water flow or no water flow 
 *Connected to nano pin 
 *[sample code and project](http://forum.arduino.cc/index.php?topic=8548.0)
 
-3.Oops skipped #3 
+3. Oops skipped #3 
   
-4.
+4. 
 4.1 radio receiver 1 
 *[sample code](http://www.instructables.com/files/orig/FQS/YAB6/HZV3O6IZ/FQSYAB6HZV3O6IZ.txt)
 *Receive radio signal from UNO 
@@ -24,7 +24,7 @@
 *Transmit signal to activate solenoid valve from UNO to Nano 
 NOTE: the sample code is taken from [this tutorial])http://www.instructables.com/id/SOLAR-POWERED-ARDUINO-WEATHER-STATION/?ALLSTEPS#step7) do there is parts of the code you can ignore. However I'm not sure how helpful it is to you because of it. It looks like it uses a library called VirtualWire, maybe they link to it in the tutorial (steps 7 and 9 show how to build and program the transmitter/receiver) maybe there is a better library out there too? 
 ￼  
-5.
+5. 
 5.1 radio transmitter 2
 *Transmit signal from Nano to Uno 
 *Transmit signal indicating the state of water flow sensor  
