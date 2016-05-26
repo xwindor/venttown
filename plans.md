@@ -35,6 +35,7 @@ NOTE: the sample code is taken from [this tutorial](http://www.instructables.com
 *Transmit Information to web server indicating state of water flow sensor 
 *Receive inputs transmitted from web server to activate valve 
 *[Tutorial on how to send commands to arduino from webpage](http://allaboutee.com/2015/01/02/esp8266-arduino-led-control-from-webpage/)
+*[arduino esp8266 wifi library](https://github.com/sparkfun/SparkFun_ESP8266_AT_Arduino_Library/archive/master.zip)
 7. Web server 
 *A relay point between UNO and users phone 
 *Transmits signal to UNO over wifi 
