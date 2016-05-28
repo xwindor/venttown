@@ -1,3 +1,5 @@
+ ![Xaiver Image] (https://github.com/xwindor/venttown/blob/master/nano%20plans.jpg)
+
 1. Solenoid valve  
 *receive signal from Nano to turn on the valve 
 *Receive signal from Nano to turn off valve 
