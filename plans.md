@@ -25,6 +25,9 @@
 *[Sample Code](http://www.instructables.com/files/orig/F3S/72IM/HZS8WTVS/F3S72IMHZS8WTVS.txt)
 *Transmit signal to activate solenoid valve from UNO to Nano 
 NOTE: the sample code is taken from [this tutorial](http://www.instructables.com/id/SOLAR-POWERED-ARDUINO-WEATHER-STATION/?ALLSTEPS#step7) do there is parts of the code you can ignore. However I'm not sure how helpful it is to you because of it. It looks like it uses a library called VirtualWire, maybe they link to it in the tutorial (steps 7 and 9 show how to build and program the transmitter/receiver) maybe there is a better library out there too? 
+[virtual wire library for receiver/transmiter](http://www.airspayce.com/mikem/arduino/VirtualWire/)
+[tutorial 1 w sample code](https://www.sparkfun.com/datasheets/RF/KLP_Walkthrough.pdf)
+[tutorial 2 w sample code](http://winavr.scienceprog.com/example-avr-projects/running-tx433-and-rx433-rf-modules-with-avr-microcontrollers.html)
 ￼  
 5. 
   5.1 radio transmitter 2
