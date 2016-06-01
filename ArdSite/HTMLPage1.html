@@ -20,18 +20,15 @@
     <title></title>
 </head>
 <body>
-    Solenoid Valve:
-    <select name="list" id="onoff" onchange="func(this);">
-        <option value="Select">Pick One</option>
-        <option value="on">on</option>
-        <option value="off">off</option>
-    </select>
-    <br>
-    <div id="timer">
-    How long should the valve remain on:<br>
-    <input type="text" value="0"><br>
-    <button type="button">Submit</button>
-    </div>
-
+    <form action="/server.php" method="POST">
+        Solenoid Valve:
+        <input type="radio" name="onOff" value="on" onclick="func(this)"> On
+        <input type="radio" name="onOff" value="off" onclick="func(this)"> Off<br>
+        <div id="timer">
+            How long should the valve remain on (in minutes) :<br>
+            <input type="text" value="0" name="time"><br>
+        </div>
+        <input type="submit" value="Complete">
+</form>
 </body>
 </html>
