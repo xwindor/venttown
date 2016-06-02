@@ -10,6 +10,7 @@
 *[Sample code and project 3](https://spin.atomicobject.com/2014/06/28/raspberry-pi-gardening/)
 
 2. Water flow sensor - PIN 4
+
 *send signal to nano indicating water flow or no water flow 
 *Connected to nano pin 
 *[sample code and project](http://forum.arduino.cc/index.php?topic=8548.0)
