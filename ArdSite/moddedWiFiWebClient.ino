@@ -78,7 +78,7 @@ void setup() {
   if (client.connect(server, 80)) {
     Serial.println("connected to server");
     // Make a HTTP request:
-    client.println("GET /HTMLPage1.html HTTP/1.1"); //replace with GET /HTMLPage1.html
+    client.println("GET /recieve.php HTTP/1.1"); 
     client.println("Host: www.google.com"); //replace with your internal ip adress
     client.println("Connection: close");
     client.println();
