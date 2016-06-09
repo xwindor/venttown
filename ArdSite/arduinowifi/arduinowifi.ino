@@ -32,6 +32,8 @@ Distributed as-is; no warranty is given.
 const char mySSID[] = "yourSSIDhere";
 const char myPSK[] = "yourPWDhere";
 const int LED = 2;
+char onCode[23] = "ThisCodeTurnsTheUnoOnn";
+char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
 //////////////////
 // HTTP Strings //
