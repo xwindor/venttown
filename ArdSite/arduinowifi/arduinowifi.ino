@@ -40,7 +40,7 @@ char offCode[23] = "ThisCodeTurnsTheUnoOff";
 //////////////////
 const char destServer[] = "example.com"; //private ip
 
-const String httpRequest = "GET /HTMLPage1.html HTTP/1.1\n"
+const String httpRequest = "GET /recieve.php HTTP/1.1\n"
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
 
