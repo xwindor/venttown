@@ -27,6 +27,8 @@ NOTE: the sample code is taken from [this tutorial](http://www.instructables.com
 [virtual wire library for receiver/transmiter](http://www.airspayce.com/mikem/arduino/VirtualWire/)
 [tutorial 1 w sample code](https://www.sparkfun.com/datasheets/RF/KLP_Walkthrough.pdf)
 [tutorial 2 w sample code](http://winavr.scienceprog.com/example-avr-projects/running-tx433-and-rx433-rf-modules-with-avr-microcontrollers.html)
+[virtual wire Rx/Tx example](https://www.pjrc.com/teensy/td_libs_VirtualWire.html)
+[another Rx/Tx example project](http://www.instructables.com/id/RF-315433-MHz-Transmitter-receiver-Module-and-Ardu/?ALLSTEPS)
 ￼  
 5. 
   5.1 radio transmitter 2 - NANO PIN 11
