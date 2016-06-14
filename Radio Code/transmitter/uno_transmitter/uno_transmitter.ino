@@ -11,7 +11,8 @@
 #include <VirtualWire_Config.h>
 
 const int transmitPin = 11;
-char message[30];
+char openMessage[13] = "OpeningValve";
+char closeMessage[13] = "ClosingValve";
 
 void setup() {
   vw_setup(2000);
@@ -29,16 +30,14 @@ void loop() {
 
 //sends the message to the receiver to activate the valve
 void activate() {
-  message = "OpeningValve";
-  vw_send((uint8_t*) message, strlen(message));
+  vw_send((uint8_t*) openMessage, strlen(openMessage));
   vw_wait_tx();
   delay(1000);
 }
 
 //sends the message to the receiver to activate the valve
 void deactivate() {
-  message = "ClosingValve";
-  vw_send((uint8_t*) message, strlen(message));
+  vw_send((uint8_t*) closeMessage, strlen(closeMessage));
   vw_wait_tx();
   delay(1000);
 }

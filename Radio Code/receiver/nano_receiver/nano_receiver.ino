@@ -6,7 +6,7 @@
 #include <VirtualWire.h>
 #include <VirtualWire_Config.h>
 
-char message[30];
+char message[13];
 const int receivePin = 10;
 const int solenoidPin = 13;
 const int waterSensorPin = 4;
@@ -39,12 +39,14 @@ void loop() {
     }
     Serial.println();
 
-    openValve();
+    //openValve();
+    closeValve();
   }
 }
 
 void openValve() {
   digitalWrite(solenoidPin, HIGH);
+  //closeValve();
 }
 
 void closeValve() {
