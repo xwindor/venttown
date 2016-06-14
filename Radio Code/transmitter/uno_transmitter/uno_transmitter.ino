@@ -8,6 +8,7 @@
  */
 
 #include <VirtualWire.h>
+#include <VirtualWire_Config.h>
 
 const int transmitPin = 11;
 char message[30];

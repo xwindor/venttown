@@ -4,6 +4,7 @@
  */
 
 #include <VirtualWire.h>
+#include <VirtualWire_Config.h>
 
 char message[30];
 const int receivePin = 10;
