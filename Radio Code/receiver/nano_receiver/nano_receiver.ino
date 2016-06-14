@@ -10,8 +10,11 @@ char message[13];
 const int receivePin = 10;
 const int solenoidPin = 13;
 const int waterSensorPin = 4;
+const int ledPin = 8;
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("IN SETUP");
   pinMode(solenoidPin, OUTPUT);
   
   vw_set_tx_pin(receivePin);
@@ -29,6 +32,7 @@ void loop() {
   if (vw_get_message(buf, &bufflen)) {
     int i;
 
+    digitalWrite(ledPin, HIGH);
     Serial.print("Got: ");
 
     //TODO:
@@ -38,15 +42,12 @@ void loop() {
       Serial.print(buf[i]);
     }
     Serial.println();
-
-    //openValve();
-    closeValve();
+    digitalWrite(ledPin, LOW);
   }
 }
 
 void openValve() {
   digitalWrite(solenoidPin, HIGH);
-  //closeValve();
 }
 
 void closeValve() {
