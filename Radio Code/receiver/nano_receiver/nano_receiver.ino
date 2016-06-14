@@ -37,6 +37,8 @@ void loop() {
       Serial.print(buf[i]);
     }
     Serial.println();
+
+    openValve();
   }
 }
 
