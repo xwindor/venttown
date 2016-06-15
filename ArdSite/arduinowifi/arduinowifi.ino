@@ -167,7 +167,7 @@ void clientDemo()
   // a specified port.
   // Returns: 1 on success, 2 on already connected,
   // negative on fail (-1=TIMEOUT, -3=FAIL).
-  int retVal = client.connect(destServer, 80);
+  int retVal = client.connect(destServer, 8001);
   if (retVal <= 0)
   {
     Serial.println(F("Failed to connect to server."));
