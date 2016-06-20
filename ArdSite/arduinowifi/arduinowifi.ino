@@ -50,6 +50,10 @@ const String httpRequest = "GET /recieve.php HTTP/1.1\n"
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
 
+const String httpPostRequest = "GET /SetFlow.php?flow=5 HTTP/1.1\n" //sets the water flow value
+                           "Host: example.com\n" //private ip
+                           "Connection: close\n\n";
+
 // All functions called from setup() are defined below the
 // loop() function. They modularized to make it easier to
 // copy/paste into sketches of your own.
