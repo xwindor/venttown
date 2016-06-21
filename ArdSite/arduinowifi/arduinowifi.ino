@@ -40,12 +40,6 @@ char offCode[23] = "ThisCodeTurnsTheUnoOff";
 //////////////////
 const char destServer[] = "example.com"; //private ip
 
-const String htmlHeader = "HTTP/1.1 200 OK\r\n"
-                          "Content-Type: text/html\r\n"
-                          "Connection: close\r\n\r\n"
-                          "<!DOCTYPE HTML>\r\n"
-                          "<html>\r\n";
-
 const String httpRequest = "GET /recieve.php HTTP/1.1\n"
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
@@ -74,13 +68,12 @@ void setup()
   // displayConnectInfo prints the Shield's local IP
   // and the network it's connected to.
   displayConnectInfo();
-  serverSetup();
 }
 
 void loop() 
 {
-  serverDemo();
-  clientDemo();
+  setFlow();
+  valveControl();
 }
 
 void initializeESP8266()
@@ -165,7 +158,32 @@ void displayConnectInfo()
   Serial.print(F("My IP: ")); Serial.println(myIP);
 }
 
-void clientDemo()
+void setFlow(){
+   // To use the ESP8266 as a TCP client, use the 
+  // ESP8266Client class. First, create an object:
+  ESP8266Client client;
+
+  // ESP8266Client connect([server], [port]) is used to 
+  // connect to a server (const char * or IPAddress) on
+  // a specified port.
+  // Returns: 1 on success, 2 on already connected,
+  // negative on fail (-1=TIMEOUT, -3=FAIL).
+  int retVal = client.connect(destServer, 8001);
+  if (retVal <= 0)
+  {
+    Serial.println(F("Failed to connect to server."));
+    return;
+  }
+
+  // print and write can be used to send data to a connected
+  // client connection.
+  client.print(httpPostRequest);
+  if (client.connected())
+    client.stop(); // stop() closes a TCP connection.
+  
+}
+
+void valveControl()
 {
   // To use the ESP8266 as a TCP client, use the 
   // ESP8266Client class. First, create an object:
@@ -219,69 +237,6 @@ void clientDemo()
   if (client.connected())
     client.stop(); // stop() closes a TCP connection.
 }
-
-void serverSetup()
-{
-  // begin initializes a ESP8266Server object. It will
-  // start a server on the port specified in the object's
-  // constructor (in global area)
-  server.begin();
-  Serial.print(F("Server started! Go to "));
-  Serial.println(esp8266.localIP());
-  Serial.println();
-}
-
-void serverDemo()
-{
-  // available() is an ESP8266Server function which will
-  // return an ESP8266Client object for printing and reading.
-  // available() has one parameter -- a timeout value. This
-  // is the number of milliseconds the function waits,
-  // checking for a connection.
-  ESP8266Client client = server.available(500);
-  
-  if (client) 
-  {
-    Serial.println(F("Client Connected!"));
-    // an http request ends with a blank line
-    boolean currentLineIsBlank = true;
-    while (client.connected()) 
-    {
-      if (client.available()) 
-      {
-        char c = client.read();
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the http request has ended,
-        // so you can send a reply
-        if (c == '\n' && currentLineIsBlank) 
-        {
-          Serial.println(F("Sending HTML page"));
-          // send a standard http response header:
-          client.print(htmlHeader);
-          String htmlBody = "Hello Xavier This is Where Water Flow Information Will Go";
-          htmlBody += "</html>\n";
-          client.print(htmlBody);
-          break;
-        }
-        if (c == '\n') 
-        {
-          // you're starting a new line
-          currentLineIsBlank = true;
-        }
-        else if (c != '\r') 
-        {
-          // you've gotten a character on the current line
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    // give the web browser time to receive the data
-    delay(1);
-   
-    // close the connection:
-    client.stop();
-    Serial.println(F("Client disconnected"));
-  }
   
 // errorLoop prints an error code, then loops forever.
 void errorLoop(int error)
