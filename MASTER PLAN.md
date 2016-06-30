@@ -11,7 +11,11 @@
 
 2. Water flow sensor - PIN 4
 *send signal to nano indicating water flow or no water flow 
-*Connected to nano pin 
+*Connected to nano pin 2
+*Formula for water remaining in barrel: Water Remaining = Water remaining L - (water flow rate L/hr x time water is flowing hr)
+*there may be a problem with this formula, if the water flow rate changes drastically due to a change in water pressure then we may have to change the formula to account for this
+*Formula for water dripped into plants: Water dripped = time water dripped hr x (water drip rate G/hr x 3.785 L/G)
+*there are two dripers, one is 1 gallon per hour and the other is 2 gallons per hour, both should be represented on the website
 *[sample code and project](http://forum.arduino.cc/index.php?topic=8548.0)
 
 3. Oops skipped #3 
