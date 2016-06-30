@@ -35,6 +35,13 @@ const int LED = 2;
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
+//water flow calculation variables
+volatile int flow_frequency; // Measures flow sensor pulses
+unsigned int l_hour; // Calculated litres/hour
+unsigned char flowsensor = 2; // Sensor Input
+unsigned long currentTime;
+unsigned long cloopTime;
+
 //////////////////
 // HTTP Strings //
 //////////////////
@@ -44,15 +51,19 @@ const String httpRequest = "GET /recieve.php HTTP/1.1\n"
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
 
-const String httpPostRequest = "GET /SetFlow.php?flow=5 HTTP/1.1\n" //sets the water flow value
-                           "Host: example.com\n" //private ip
-                           "Connection: close\n\n";
-
 // All functions called from setup() are defined below the
 // loop() function. They modularized to make it easier to
 // copy/paste into sketches of your own.
 void setup() 
 {
+   pinMode(flowsensor, INPUT);
+   digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
+   Serial.begin(9600);
+   attachInterrupt(0, flow, RISING); // Setup Interrupt
+   sei(); // Enable interrupts
+   currentTime = millis();
+   cloopTime = currentTime;
+   
   // Serial Monitor is used to control the demo and view
   // debug information.
   Serial.begin(9600);
@@ -175,12 +186,24 @@ void setFlow(){
     return;
   }
 
+   currentTime = millis();
+   // Every second, calculate and print litres/hour
+   if(currentTime >= (cloopTime + 1000))
+   {
+      cloopTime = currentTime; // Updates cloopTime
+      // Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min.
+      l_hour = (flow_frequency * 60 / 7.5); // (Pulse frequency x 60 min) / 7.5Q = flowrate in L/hour
+      flow_frequency = 0; // Reset Counter
+   }
+
   // print and write can be used to send data to a connected
   // client connection.
+  const String httpPostRequest = "GET /SetFlow.php?flow=" + l_hour + "HTTP/1.1\n" //sets the water flow value
+                           "Host: example.com\n" //private ip
+                           "Connection: close\n\n";
   client.print(httpPostRequest);
   if (client.connected())
-    client.stop(); // stop() closes a TCP connection.
-  
+    client.stop(); // stop() closes a TCP connection.  
 }
 
 void valveControl()
