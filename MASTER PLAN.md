@@ -1,20 +1,21 @@
  ![Xaiver Image] (https://github.com/xwindor/venttown/blob/master/nano%20plans.jpg)
 
 1. Solenoid valve - PIN 13
-
-* receive signal from Nano to turn on the valve 
-* Receive signal from Nano to turn off valve 
-* Receive signal from nano to turn on valve for a period of time (adjustable by user) and then have the signal turn off when the time expires. 
-* Connected to nano pin 
-* [sample code and project 1](http://www.bc-robotics.com/tutorials/controlling-a-solenoid-valve-with-arduino/)
-* [sample code and project 2 (steps 7-9](http://www.instructables.com/id/Raspberry-Pi-Irrigation-Controller/step7/Software/)
-* [Sample code and project 3](https://spin.atomicobject.com/2014/06/28/raspberry-pi-gardening/)
+*receive signal from Nano to turn on the valve 
+*Receive signal from Nano to turn off valve 
+*Receive signal from nano to turn on valve for a period of time (adjustable by user) and then have the signal turn off when the time expires. 
+*Connected to nano pin 
+*[sample code and project 1](http://www.bc-robotics.com/tutorials/controlling-a-solenoid-valve-with-arduino/)
+*[sample code and project 2 (steps 7-9](http://www.instructables.com/id/Raspberry-Pi-Irrigation-Controller/step7/Software/)
+*[Sample code and project 3](https://spin.atomicobject.com/2014/06/28/raspberry-pi-gardening/)
 
 2. Water flow sensor - PIN 4
 *send signal to nano indicating water flow or no water flow 
 *Connected to nano pin 2
+
 *Formula for water remaining in barrel: Water Remaining = Water remaining L - (water flow rate L/hr x time water is flowing hr)
 *there may be a problem with this formula, if the water flow rate changes drastically due to a change in water pressure then we may have to change the formula to account for this
+
 *Formula for water dripped into plants: Water dripped = time water dripped hr x (water drip rate G/hr x 3.785 L/G)
 *there are two dripers, one is 1 gallon per hour and the other is 2 gallons per hour, both should be represented on the website
 *[sample code and project](http://forum.arduino.cc/index.php?topic=8548.0)
