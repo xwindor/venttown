@@ -59,7 +59,7 @@ void setup()
    pinMode(flowsensor, INPUT);
    digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
    Serial.begin(9600);
-   attachInterrupt(0, setFlow, RISING); // Setup Interrupt
+   attachInterrupt(0, flow, RISING); // Setup Interrupt
    sei(); // Enable interrupts
    currentTime = millis();
    cloopTime = currentTime;
@@ -167,6 +167,11 @@ void displayConnectInfo()
   // ESP8266's current local IP address.
   IPAddress myIP = esp8266.localIP();
   Serial.print(F("My IP: ")); Serial.println(myIP);
+}
+
+void flow () // Interrupt function
+{
+   flow_frequency++;
 }
 
 void setFlow(){
