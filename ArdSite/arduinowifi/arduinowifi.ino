@@ -1,4 +1,4 @@
-/************************************************************
+ArdOnOff.php/************************************************************
 ESP8266_Shield_Demo.h
 SparkFun ESP8266 AT library - Demo
 Jim Lindblom @ SparkFun Electronics
@@ -47,7 +47,7 @@ unsigned long cloopTime;
 //////////////////
 const char destServer[] = "example.com"; //private ip
 
-const String httpRequest = "GET /recieve.php HTTP/1.1\n"
+const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
 
