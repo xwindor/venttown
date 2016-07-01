@@ -1,4 +1,4 @@
-ArdOnOff.php/************************************************************
+/************************************************************
 ESP8266_Shield_Demo.h
 SparkFun ESP8266 AT library - Demo
 Jim Lindblom @ SparkFun Electronics
@@ -31,7 +31,7 @@ Distributed as-is; no warranty is given.
 // password of your WiFi network.
 const char mySSID[] = "yourSSIDhere";
 const char myPSK[] = "yourPWDhere";
-const int LED = 2;
+const int solenoidValve = 13;
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -79,6 +79,9 @@ void setup()
   // displayConnectInfo prints the Shield's local IP
   // and the network it's connected to.
   displayConnectInfo();
+  
+  serialTrigger(F("Press any key to connect client."));
+  valveControl();
 }
 
 void loop() 
@@ -203,7 +206,7 @@ void setFlow(){
 
   // print and write can be used to send data to a connected
   // client connection.
-  const String httpPostRequest = "GET /SetFlow.php?flow=" + l_hour + "HTTP/1.1\n" //sets the water flow value
+  String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + "HTTP/1.1\n" //sets the water flow value
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
@@ -242,7 +245,7 @@ void valveControl()
     if( c == onCode[onCount]){
       onCount++;
       if(onCount==22){
-        digitalWrite(LED, HIGH); 
+        digitalWrite(solenoidValve, HIGH); 
       }
     }
     else{
@@ -251,7 +254,7 @@ void valveControl()
     if( c == offCode[offCount]){
       offCount++;
       if(offCount==22){
-        digitalWrite(LED, LOW);
+        digitalWrite(solenoidValve, LOW);
       }
     }
     else{
