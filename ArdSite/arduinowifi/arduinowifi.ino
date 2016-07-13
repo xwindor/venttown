@@ -32,6 +32,7 @@ Distributed as-is; no warranty is given.
 const char mySSID[] = "yourSSIDhere";
 const char myPSK[] = "yourPWDhere";
 const int solenoidValve = 13;
+const int alwaysOn = 2; //pin for testing this pin will always be on
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -56,6 +57,7 @@ const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
 // copy/paste into sketches of your own.
 void setup() 
 {
+   digitalWrite(alwaysOn, HIGH);
    pinMode(flowsensor, INPUT);
    digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
    Serial.begin(9600);
