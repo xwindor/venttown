@@ -32,7 +32,7 @@ Distributed as-is; no warranty is given.
 const char mySSID[] = "yourSSIDhere";
 const char myPSK[] = "yourPWDhere";
 const int solenoidValve = 13;
-const int alwaysOn = 2; //pin for testing this pin will always be on
+const int blinker = 2; //pin for testing this pin will blink
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -42,6 +42,9 @@ unsigned int l_hour; // Calculated litres/hour
 unsigned char flowsensor = 2; // Sensor Input
 unsigned long currentTime;
 unsigned long cloopTime;
+
+//test vars
+int t=0;
 
 //////////////////
 // HTTP Strings //
@@ -57,7 +60,6 @@ const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
 // copy/paste into sketches of your own.
 void setup() 
 {
-   digitalWrite(alwaysOn, HIGH);
    pinMode(flowsensor, INPUT);
    digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
    Serial.begin(9600);
@@ -88,6 +90,18 @@ void setup()
 
 void loop() 
 {
+  if (t ==30){
+    WiFi.disconnect();
+  }
+  if(t == 45){
+    connectESP8266();
+    t=0;
+  }
+  digitalWrite(blinker, HIGH);
+  delay(500);
+  digitalWrite(blinker, low);
+  delay(500);
+  t++;
   setFlow();
   valveControl();
 }
