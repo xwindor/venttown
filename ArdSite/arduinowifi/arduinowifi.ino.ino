@@ -73,7 +73,6 @@ void setup()
   // Serial Monitor is used to control the demo and view
   // debug information.
   Serial.begin(9600);
-  serialTrigger(F("Press any key to begin."));
 
   // initializeESP8266() verifies communication with the WiFi
   // shield, and sets it up.
@@ -86,7 +85,6 @@ void setup()
   // and the network it's connected to.
   displayConnectInfo();
   
-  serialTrigger(F("Press any key to connect client."));
   valveControl();
 }
 
@@ -296,15 +294,4 @@ void errorLoop(int error)
     ;
 }
 
-// serialTrigger prints a message, then waits for something
-// to come in from the serial port.
-void serialTrigger(String message)
-{
-  Serial.println();
-  Serial.println(message);
-  Serial.println();
-  while (!Serial.available())
-    ;
-  while (Serial.available())
-    Serial.read();
-}
+
