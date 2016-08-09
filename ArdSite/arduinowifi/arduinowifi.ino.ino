@@ -32,7 +32,7 @@ Distributed as-is; no warranty is given.
 const char mySSID[] = "yourSSIDhere";
 const char myPSK[] = "yourPWDhere";
 const int solenoidValve = 13;
-const int blinker = 2; //pin for testing this pin will blink
+const int blinker = 4; //pin for testing this pin will blink
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -98,9 +98,9 @@ void loop()
     t=0;
   }
   digitalWrite(blinker, HIGH);
- +delay(500);
- +digitalWrite(blinker, LOW);
- +delay(500);
+  delay(500);
+  digitalWrite(blinker, LOW);
+  delay(500);
   t++;
   setFlow();
   valveControl();
