@@ -92,15 +92,13 @@ void loop()
 {
   if (t ==30){
     esp8266.disconnect();
+    digitalWrite(blinker, LOW);
   }
   if(t == 45){
     connectESP8266();
+    digitalWrite(blinker, HIGH);
     t=0;
   }
-  digitalWrite(blinker, HIGH);
-  delay(500);
-  digitalWrite(blinker, LOW);
-  delay(500);
   t++;
   setFlow();
   valveControl();
