@@ -78,7 +78,7 @@ void setup()
   initializeESP8266();
 
   // connectESP8266() connects to the defined WiFi network.
-  connectESP8266();
+  //connectESP8266();
 
   // displayConnectInfo prints the Shield's local IP
   // and the network it's connected to.
@@ -92,13 +92,15 @@ void loop()
 {
   if (t ==30){
     esp8266.disconnect();
-    digitalWrite(blinker, LOW);
   }
   if(t == 45){
     connectESP8266();
-    digitalWrite(blinker, HIGH);
     t=0;
   }
+  digitalWrite(blinker, HIGH);
+ +delay(500);
+ +digitalWrite(blinker, LOW);
+ +delay(500);
   t++;
   setFlow();
   valveControl();
