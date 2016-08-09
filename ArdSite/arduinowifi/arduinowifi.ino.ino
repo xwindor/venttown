@@ -61,6 +61,8 @@ const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
 void setup() 
 {
    pinMode(flowsensor, INPUT);
+   pinMode(blinker, OUTPUT);
+   pinMode(solenoidValve, OUTPUT);
    digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
    Serial.begin(9600);
    attachInterrupt(0, flow, RISING); // Setup Interrupt
