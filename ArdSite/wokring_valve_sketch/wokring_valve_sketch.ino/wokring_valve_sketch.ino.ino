@@ -217,7 +217,7 @@ void setFlow(){
 
   // print and write can be used to send data to a connected
   // client connection.
-  String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + "HTTP/1.1\n" //sets the water flow value
+  String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + " HTTP/1.1\n" //sets the water flow value
                            "Host: example.com\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
@@ -290,15 +290,4 @@ void errorLoop(int error)
     ;
 }
 
-// serialTrigger prints a message, then waits for something
-// to come in from the serial port.
-void serialTrigger(String message)
-{
-  Serial.println();
-  Serial.println(message);
-  Serial.println();
-  while (!Serial.available())
-    ;
-  while (Serial.available())
-    Serial.read();
-}
+
