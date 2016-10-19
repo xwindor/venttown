@@ -16,8 +16,25 @@
     </script>
 </head>
 <body>
-    <a href="Home.html">Home</a>
-    <a href="WaterFlow.php">Water Flow</a>
+
+    <div id="menuwrapper">
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="Home.php">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="WaterFlow.php" class="active">
+                        <span>Water Flow Info</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr class="line" />
+
     <br>
     <div id="ref">
         <?php

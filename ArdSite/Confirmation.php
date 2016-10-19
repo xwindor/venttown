@@ -5,9 +5,23 @@
         <title></title>
     </head>
     <body>
-        <a href="Home.html">Home</a>
-        <a href="WaterFlow.php">Water Flow</a>
-        <br>
+    <div id="menuwrapper">
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="Home.php">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="WaterFlow.php">
+                        <span>Water Flow Info</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr class="line" />
     </body>
 </html>
 <?php

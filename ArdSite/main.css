@@ -1,3 +1,82 @@
-body{
-  background-color: lightgreen;
+#menuwrapper {
+    height: 41px;
 }
+
+#menu {
+    font-family:'Segoe UI';
+    top: 8px;
+    width: 100%;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#menu li {
+  float: left;
+  margin: 0px 20px 0px 40px;
+}
+
+#menu li a {
+   display: block;
+   padding:14px 16px;
+   text-align: center;
+   color: #197EC0;
+   text-decoration: none;
+}
+
+#menu li a:hover{
+    background-color: #F8F8F8;
+    border:thin darkgrey;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    color: #197EC0;
+}
+
+#menu li a.active{
+    background-color: #197EC0;
+    color: white;
+    border:thin #197EC0;    
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+}
+
+#onOff1{
+    margin:auto;
+    display:block;
+
+}
+
+#onOff2{
+    margin:  25px 25px 25px 25px;
+}
+
+.circle {
+  border-radius: 100%;
+  padding: 15px;
+  margin:  100px 50px 100px 50px;
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  border-color: #000000;
+}
+
+#on{
+    background: #00ff21;
+}
+
+.inactive{
+    opacity: 0.2;
+}
+
+#off{
+    background: #ff0000;
+}
+
+
+
+
+
