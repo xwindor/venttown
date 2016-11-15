@@ -50,10 +50,10 @@ int t=0;
 //////////////////
 // HTTP Strings //
 //////////////////
-const char destServer[] = "192.168.1.104"; //private ip
+const char destServer[] = "http://xaviersgarden.com/Home.php"; //private ip
 
 const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
-                           "Host: 192.168.1.104\n" //private ip
+                           "Host: http://xaviersgarden.com/Home.php\n" //private ip
                            "Connection: close\n\n";
 
 // All functions called from setup() are defined below the
@@ -218,7 +218,7 @@ void setFlow(){
   // print and write can be used to send data to a connected
   // client connection.
   String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + " HTTP/1.1\n" //sets the water flow value
-                           "Host: example.com\n" //private ip
+                           "Host: http://xaviersgarden.com/Home.php\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
   if (client.connected())
