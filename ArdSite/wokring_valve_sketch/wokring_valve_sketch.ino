@@ -48,10 +48,11 @@ unsigned long cloopTime;
 //////////////////
 // HTTP Strings //
 //////////////////
-const char destServer[] = "http://xaviersgarden.com/Home.php"; //private ip
+ESP8266Client client;
+const char destServer[] = "xaviersgarden.com"; //private ip
 
 const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
-                           "Host: http://xaviersgarden.com/Home.php\n" //private ip
+                           "Host: xaviersgarden.com\n" //private ip
                            "Connection: close\n\n";
 
 // All functions called from setup() are defined below the
@@ -59,25 +60,28 @@ const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
 // copy/paste into sketches of your own.
 void setup() 
 {
-  pinMode(flowsensor, INPUT);
+  pinMode(flowsensor, INPUT);  
   pinMode(serverConnectStatus, OUTPUT);
   pinMode(wifiStatus, OUTPUT);
   pinMode(solenoidValve, OUTPUT);
   digitalWrite(flowsensor, HIGH); // Optional Internal Pull-Up
-  Serial.begin(9600);
   attachInterrupt(0,flow, RISING); //Setup Interupt
   sei(); // Enable interrupts
   currentTime = millis();
   cloopTime = currentTime;
-  Serial.begin(9600);
   initializeESP8266();
-  valveControl();
   connectESP8266();
+    ESP8266Client client;
+    int retVal = client.connect(destServer, 80);
+    if (retVal > 0)
+  {
+    Serial.print("connected to website!");
+    digitalWrite(serverConnectStatus, HIGH);
+  }
 }
 
 void loop() 
 {
-  
   setFlow();
   valveControl();
 }
@@ -100,27 +104,14 @@ void connectESP8266()
     // On fail, the function will either return:
     //  -1: TIMEOUT - The library has a set 30s timeout
     //  -3: FAIL - Couldn't connect to network.
+    esp8266.setMode(ESP8266_MODE_STA);
     int retVal = esp8266.connect(mySSID, myPSK);
     if (retVal > 0)
   {
+    Serial.print("connected to wifi");
     digitalWrite(wifiStatus, HIGH);
   }
   
-    // To use the ESP8266 as a TCP client, use the 
-  // ESP8266Client class. First, create an object:
-  ESP8266Client client;
-
-  // ESP8266Client connect([server], [port]) is used to 
-  // connect to a server (const char * or IPAddress) on
-  // a specified port.
-  // Returns: 1 on success, 2 on already connected,
-  // negative on fail (-1=TIMEOUT, -3=FAIL).
-  retVal = client.connect(destServer, 80);
-  if (retVal > 0)
-  {
-    digitalWrite(serverConnectStatus, HIGH);
-    return;
-  }
 }
 
 void flow () // Interrupt function
@@ -130,7 +121,11 @@ void flow () // Interrupt function
 
 void setFlow()
 {
-    ESP8266Client client;
+    int retVal = client.connect(destServer, 80);
+    if (retVal > 0)
+  {
+    Serial.print("connected to website!");
+  }
     currentTime = millis();
    // Every second, calculate and print litres/hour
    if(currentTime >= (cloopTime + 1000))
@@ -144,15 +139,18 @@ void setFlow()
   // print and write can be used to send data to a connected
   // client connection.
   String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + " HTTP/1.1\n" //sets the water flow value
-                           "Host: http://xaviersgarden.com/Home.php\n" //private ip
+                           "Host: http://xaviersgarden.com\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
 }
 
 void valveControl()
 {
-  ESP8266Client client;
-
+    int retVal = client.connect(destServer, 80);
+    if (retVal > 0)
+  {
+    Serial.print("connected to website!");
+  }
   // print and write can be used to send data to a connected
   // client connection.
   client.print(httpRequest);
