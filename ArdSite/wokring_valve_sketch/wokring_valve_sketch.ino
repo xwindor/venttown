@@ -43,6 +43,10 @@ unsigned int l_hour; // Calculated litres/hour
 unsigned char flowsensor = 2; // Sensor Input
 unsigned long currentTime;
 unsigned long cloopTime;
+void flow () // Interrupt function
+{
+   flow_frequency++;
+}
 
 
 //////////////////
@@ -114,18 +118,8 @@ void connectESP8266()
   
 }
 
-void flow () // Interrupt function
-{
-   flow_frequency++;
-}
-
 void setFlow()
 {
-    int retVal = client.connect(destServer, 80);
-    if (retVal > 0)
-  {
-    Serial.print("connected to website!");
-  }
     currentTime = millis();
    // Every second, calculate and print litres/hour
    if(currentTime >= (cloopTime + 1000))
@@ -146,11 +140,7 @@ void setFlow()
 
 void valveControl()
 {
-    int retVal = client.connect(destServer, 80);
-    if (retVal > 0)
-  {
-    Serial.print("connected to website!");
-  }
+
   // print and write can be used to send data to a connected
   // client connection.
   client.print(httpRequest);
