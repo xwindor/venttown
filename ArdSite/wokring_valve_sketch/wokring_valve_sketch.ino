@@ -48,7 +48,6 @@ unsigned long cloopTime;
 //////////////////
 // HTTP Strings //
 //////////////////
-ESP8266Client client;
 const char destServer[] = "xaviersgarden.com"; //private ip
 
 const String httpRequest = "GET /ArdOnOff.php HTTP/1.1\n"
@@ -121,6 +120,7 @@ void flow () // Interrupt function
 
 void setFlow()
 {
+  ESP8266Client client;
     int retVal = client.connect(destServer, 80);
     if (retVal > 0)
   {
@@ -139,13 +139,15 @@ void setFlow()
   // print and write can be used to send data to a connected
   // client connection.
   String httpPostRequest = "GET /SetFlow.php?flow=" + String(l_hour) + " HTTP/1.1\n" //sets the water flow value
-                           "Host: http://xaviersgarden.com\n" //private ip
+                           "Host: xaviersgarden.com\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
+
 }
 
 void valveControl()
 {
+  ESP8266Client client;
     int retVal = client.connect(destServer, 80);
     if (retVal > 0)
   {
