@@ -21,13 +21,18 @@
         <div id="menu">
             <ul>
                 <li>
-                    <a href="Home.php">
+                    <a href="index.php">
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="WaterFlow.php" class="active">
+                    <a href="WaterFlow.php" class=>
                         <span>Water Flow Info</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Moisture.php" class="active">
+                        <span>Moisture Info</span>
                     </a>
                 </li>
             </ul>
