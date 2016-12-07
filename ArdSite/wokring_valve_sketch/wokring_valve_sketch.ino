@@ -34,6 +34,7 @@ const char myPSK[] = "6689581li";
 const int solenoidValve = 13;
 const int serverConnectStatus = 4; // on if arduino is connected to server GREEN
 const int wifiStatus = 7; // if on LED is lit ORANGE
+const int moisturePin = A0;
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -74,7 +75,6 @@ void setup()
     int retVal = client.connect(destServer, 80);
     if (retVal > 0)
   {
-    Serial.print("connected to website!");
     digitalWrite(serverConnectStatus, HIGH);
   }
 }
@@ -82,6 +82,7 @@ void setup()
 void loop() 
 {
   setFlow();
+  setMoisture();
   valveControl();
 }
 
@@ -118,14 +119,27 @@ void flow () // Interrupt function
    flow_frequency++;
 }
 
+void setMoisture()
+{
+  ESP8266Client client;
+  client.connect(destServer, 80);
+  currentTime = millis();
+  unsigned long moisture = 0;
+  moisture = analogRead(moisturePin);
+
+  // print and write can be used to send data to a connected
+  // client connection.
+  String httpPostRequest = "GET /SetMoisture.php?moisture=" + String(moisture) + " HTTP/1.1\n" //sets the water flow value
+                           "Host: xaviersgarden.com\n" //private ip
+                           "Connection: close\n\n";
+  client.print(httpPostRequest);
+
+}
+
 void setFlow()
 {
   ESP8266Client client;
-    int retVal = client.connect(destServer, 80);
-    if (retVal > 0)
-  {
-    Serial.print("connected to website!");
-  }
+  client.connect(destServer, 80);
     currentTime = millis();
    // Every second, calculate and print litres/hour
    if(currentTime >= (cloopTime + 1000))
@@ -148,15 +162,11 @@ void setFlow()
 void valveControl()
 {
   ESP8266Client client;
-    int retVal = client.connect(destServer, 80);
-    if (retVal > 0)
-  {
-    Serial.print("connected to website!");
-  }
+  client.connect(destServer, 80);
+
   // print and write can be used to send data to a connected
   // client connection.
   client.print(httpRequest);
-
   // available() will return the number of characters
   // currently in the receive buffer.
   int onCount = 0;
