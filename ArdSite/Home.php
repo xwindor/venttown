@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -46,7 +46,7 @@
     <?php
         $classon = "inactive";
         $classoff = "";
-        $endTime = @file_get_contents("C:\\YOURPATH\\log.txt");
+        $endTime = @file_get_contents("log.txt");
         if($endTime){
             $currentTime = time();
             if($currentTime<$endTime){

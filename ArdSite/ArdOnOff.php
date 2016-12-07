@@ -7,7 +7,7 @@
 </html>
 	
 <?php
-    $endTime = file_get_contents("C:\\YOURPATH\\log.txt");
+    $endTime = file_get_contents("log.txt");
     $currentTime = time();
 	if($currentTime>$endTime){
 		echo "ThisCodeTurnsTheUnoOff";

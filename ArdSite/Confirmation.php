@@ -35,5 +35,5 @@
     if($onOff == 'off'){
       echo 'solenoid valve is turned off';
     }
-    file_put_contents("C:\\YOURPATH\\log.txt", $endTime);
+    file_put_contents("log.txt", $endTime);
 ?>

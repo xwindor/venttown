@@ -38,7 +38,7 @@
     <br>
     <div id="ref">
         <?php
-            $flow = file_get_contents("C:\\YOURPATH\\flow.txt");
+            $flow = file_get_contents("flow.txt");
 	        echo $flow;
         ?>
     </div>
