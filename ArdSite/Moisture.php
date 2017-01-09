@@ -43,10 +43,13 @@
     <br>
     <div id="ref">
         <?php
-            $flow = file_get_contents("moisture.txt");
+            $moisture0 = file_get_contents("moisture0.txt");
+            $moisture1 = file_get_contents("moisture1.txt");
+            $moisture2 = file_get_contents("moisture2.txt");
 	        echo "Sensor 1: $moisture0 \r\n Sensor 2: 					$moisture1 \r\n Sensor 3: $moisture2";
         ?>
     </div>
 </body>
 </html>
+
 
