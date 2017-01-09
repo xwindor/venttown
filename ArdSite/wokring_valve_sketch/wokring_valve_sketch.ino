@@ -34,7 +34,9 @@ const char myPSK[] = "6689581li";
 const int solenoidValve = 13;
 const int serverConnectStatus = 4; // on if arduino is connected to server GREEN
 const int wifiStatus = 7; // if on LED is lit ORANGE
-const int moisturePin = A0;
+const int moisturePin0 = A0;
+const int moisturePin1 = A1;
+const int moisturePin2 = A2;
 char onCode[23] = "ThisCodeTurnsTheUnoOnn";
 char offCode[23] = "ThisCodeTurnsTheUnoOff";
 
@@ -124,16 +126,20 @@ void setMoisture()
   ESP8266Client client;
   client.connect(destServer, 80);
   currentTime = millis();
-  unsigned long moisture = 0;
-  moisture = analogRead(moisturePin);
+  unsigned long moisture0 = 0;
+  unsigned long moisture1 = 0;
+  unsigned long moisture2 = 0;
+  moisture0 = analogRead(moisturePin0);
+  moisture1 = analogRead(moisturePin1);
+  moisture2 = analogRead(moisturePin2);
 
   // print and write can be used to send data to a connected
   // client connection.
-  String httpPostRequest = "GET /SetMoisture.php?moisture=" + String(moisture) + " HTTP/1.1\n" //sets the water flow value
+  String httpPostRequest = "GET /SetMoisture.php?moisture0=" + String(moisture0) + "&moisture1=" + String(moisture1) + "&moisture2=" + String(moisture2) + " HTTP/1.1\n" //sets the water flow value
                            "Host: xaviersgarden.com\n" //private ip
                            "Connection: close\n\n";
   client.print(httpPostRequest);
-
+                            
 }
 
 void setFlow()

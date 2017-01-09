@@ -44,7 +44,7 @@
     <div id="ref">
         <?php
             $flow = file_get_contents("moisture.txt");
-	        echo $moisture;
+	        echo "Sensor 1: $moisture0 \r\n Sensor 2: 					$moisture1 \r\n Sensor 3: $moisture2";
         ?>
     </div>
 </body>

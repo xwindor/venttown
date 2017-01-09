@@ -6,7 +6,15 @@
     </head>
 </html>
 <?php
-    $moisture = $_GET["moisture"];
-    file_put_contents("moisture.txt", $moisture);
+    $moisture0 = $_GET["moisture0"];
+    file_put_contents("moisture0.txt", $moisture0);
+?>
+<?php
+    $moisture1 = $_GET["moisture1"];
+    file_put_contents("moisture1.txt", $moisture1);
+?>
+<?php
+    $moisture2 = $_GET["moisture2"];
+    file_put_contents("moisture2.txt", $moisture2);
 ?>
 
