@@ -44,7 +44,7 @@
     <div id="ref">
         <?php
             $flow = file_get_contents("flow.txt");
-	        echo $flow;
+	        echo "Current flow rate: $flow L/hr";
         ?>
     </div>
 </body>
